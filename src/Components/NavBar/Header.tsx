@@ -1,78 +1,78 @@
-import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import { teal } from '@material-ui/core/colors';
-import { Grid, Hidden } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
-import { NEWS_ROUTE } from '../../Routes/const';
-import { FieldAutocompleted } from './Components/Autocomplete';
-import SearchIcon from '@material-ui/icons/Search';
+import React, { useEffect, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Toolbar from "@material-ui/core/Toolbar";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
+import { teal } from "@material-ui/core/colors";
+import { Grid, Hidden, Paper, Slide } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+import { NEWS_ROUTE } from "../../Routes/const";
+import { FieldAutocompleted } from "./Components/Autocomplete";
+import SearchIcon from "@material-ui/icons/Search";
 import {
   errorFecth,
   startFecth,
   successfulFecth,
-} from '../../Redux/autocompleteList/autocompleteSlice';
-import { connectWithApi } from '../../api/connectWithApi';
-import { GET, LIST_URL } from '../../api/const';
-import { useDispatch } from 'react-redux';
+} from "../../Redux/autocompleteList/autocompleteSlice";
+import { connectWithApi } from "../../api/connectWithApi";
+import { GET, LIST_URL } from "../../api/const";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles({
   toolbar: {
-    height: '105px',
+    height: "105px",
     borderBottom: `2px solid white`,
     backgroundColor: teal[800],
-    color: 'white',
+    color: "white",
   },
   toolbarTitle: {
     flex: 1,
-    cursor: 'pointer',
+    cursor: "pointer",
   },
   toolbarSecondary: {
-    height: '48px',
+    height: "48px",
     backgroundColor: teal[800],
-    justifyContent: 'space-between',
-    overflowX: 'auto',
-    color: 'white',
+    justifyContent: "space-between",
+    overflowX: "auto",
+    color: "white",
   },
   toolbarLink: {
     padding: 10,
     flexShrink: 0,
   },
   buttonSearch: {
-    position: 'fixed',
+    position: "fixed",
     padding: 8,
     zIndex: 5,
     borderRadius: 10,
     bottom: 15,
     right: 5,
-    color: 'white',
+    color: "white",
     backgroundColor: teal[800],
   },
   toggleSearch: {
-    position: 'fixed',
+    position: "fixed",
     padding: 8,
     zIndex: 4,
-    width: '100%',
+    width: "100%",
     bottom: 0,
     right: 0,
-    color: 'white',
+    color: "white",
     backgroundColor: teal[800],
   },
 });
 
-const title = 'NEWS FEED';
+const title = "NEWS FEED";
 const sections = [
-  { title: 'Technology', url: '#' },
-  { title: 'Design', url: '#' },
-  { title: 'Culture', url: '#' },
-  { title: 'Business', url: '#' },
-  { title: 'Politics', url: '#' },
-  { title: 'Opinion', url: '#' },
-  { title: 'Health', url: '#' },
-  { title: 'Travel', url: '#' },
+  { title: "Technology", url: "#" },
+  { title: "Design", url: "#" },
+  { title: "Culture", url: "#" },
+  { title: "Business", url: "#" },
+  { title: "Politics", url: "#" },
+  { title: "Opinion", url: "#" },
+  { title: "Health", url: "#" },
+  { title: "Travel", url: "#" },
 ];
 
 const Header = () => {
@@ -137,7 +137,17 @@ const Header = () => {
             <Grid item xs={12}>
               {showSearch && (
                 <Grid item className={classes.toggleSearch}>
-                  <FieldAutocompleted />
+                  <Slide
+                    direction='left'
+                    in={showSearch}
+                    mountOnEnter
+                    unmountOnExit
+                    timeout={700}
+                  >
+                    <Grid item>
+                      <FieldAutocompleted />
+                    </Grid>
+                  </Slide>
                 </Grid>
               )}
               <SearchIcon
