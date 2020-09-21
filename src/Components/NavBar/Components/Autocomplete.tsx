@@ -1,22 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core';
-import { connectWithApi } from '../../../api/connectWithApi';
-import { GET, LIST_URL } from '../../../api/const';
 import { useHistory } from 'react-router-dom';
 import { NEWS_ROUTE } from '../../../Routes/const';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   selectAutocompleteData,
   selectAutocompleteError,
   selectAutocompleteLoading,
 } from '../../../Redux/autocompleteList/selectors';
-import {
-  errorFecth,
-  startFecth,
-  successfulFecth,
-} from '../../../Redux/autocompleteList/autocompleteSlice';
 import Skeleton from '@material-ui/lab/Skeleton';
 
 const useStyles = makeStyles({
@@ -45,25 +38,9 @@ const FieldAutocompleted = () => {
   const classes = useStyles();
 
   //definimos dispath y selectores
-  const dispatch = useDispatch();
   const autoLoading = useSelector(selectAutocompleteLoading);
   const autocompleteData = useSelector(selectAutocompleteData);
   const autocompleteError = useSelector(selectAutocompleteError);
-
-  //useEffect para llamar a la API
-  useEffect(() => {
-    getAutocompleteList();
-  }, []);
-  const getAutocompleteList = async () => {
-    dispatch(startFecth());
-    try {
-      //   const result = await connectWithApi('hola', GET);
-      const result = await connectWithApi(LIST_URL, GET);
-      dispatch(successfulFecth(result));
-    } catch (error) {
-      dispatch(errorFecth({ code: error.code, message: error.message }));
-    }
-  };
 
   const history = useHistory();
   const handleAutocomplete = (event: any, newValue: any | null) => {
@@ -76,7 +53,7 @@ const FieldAutocompleted = () => {
   return (
     <>
       {autoLoading || (!autocompleteData && !autocompleteError) ? (
-        <Skeleton animation='wave' variant='text' height={50} width={250} />
+        <Skeleton animation='wave' variant='text' height={60} width={250} />
       ) : (
         !autocompleteError && (
           <Autocomplete
