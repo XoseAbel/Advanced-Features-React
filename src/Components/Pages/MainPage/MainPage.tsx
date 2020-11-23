@@ -8,7 +8,7 @@ import {
   USE_LAYOUT_EFFECT,
   RENDER_WITH_KEY,
   CLOSURE_AVOID_MULTIPLE_CALLS,
-} from '../../../routes2/const';
+} from '../../../routes/const';
 
 export default () => {
   const classes = useStyles();
