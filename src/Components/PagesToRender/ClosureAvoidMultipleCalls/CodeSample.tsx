@@ -13,13 +13,18 @@ const users: usersInterface = {
 };
 
 const fetchUser = (id: string) => {
-  console.log('Fetch data for user', id);
   return new Promise<userInterface>((resolve) =>
     setTimeout(() => resolve(users[id]), 3000)
   );
 };
 
-function User({ id }: { id: string }) {
+function User({
+  id,
+  pushElement,
+}: {
+  id: string;
+  pushElement: (newElement: string) => void;
+}) {
   const [userData, setUserData] = useState<userInterface | null>(null);
 
   useEffect(() => {
@@ -27,13 +32,12 @@ function User({ id }: { id: string }) {
 
     let cancelled = false;
 
+    pushElement(`Fetch data for user ${id}`);
     fetchUser(id).then((data: userInterface) => {
-      if (cancelled) {
-        console.log('Received stale data for user', id);
-      } else {
-        console.log('Received data for user', id, data);
-        setUserData(data);
-      }
+      cancelled
+        ? pushElement(`Received stale data for user ${id}`)
+        : (pushElement(`Received data for user ${id} ${JSON.stringify(data)}`),
+          setUserData(data));
     });
 
     return () => {
@@ -54,7 +58,7 @@ function User({ id }: { id: string }) {
   );
 }
 
-export default () => {
+export default (props: { pushElement: (newElement: string) => void }) => {
   const [id, setId] = useState<string>('1');
 
   return (
@@ -63,7 +67,7 @@ export default () => {
         <option value={1}>Fetch user 1</option>
         <option value={2}>Fetch user 2</option>
       </select>
-      <User id={id} />
+      <User id={id} pushElement={props.pushElement} />
     </div>
   );
 };
