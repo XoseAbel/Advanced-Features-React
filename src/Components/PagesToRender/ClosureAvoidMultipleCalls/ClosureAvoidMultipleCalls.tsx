@@ -5,6 +5,7 @@ import { ButtonRoute } from '../../ButtonRoute';
 import { Description } from '../../Description';
 import { Title } from '../../Title';
 import useStyles from './ClosureAvoidMultipleCalls.styles';
+import CodeSample from './CodeSample';
 
 export const ClosureAvoidMultipleCalls = () => {
   const { main, aLink } = useStyles();
@@ -33,7 +34,7 @@ export const ClosureAvoidMultipleCalls = () => {
         </a>{' '}
         to dismount effects before throw the new API call.
       </Description>
-
+      <CodeSample />
       <ButtonRoute nextRoute={MAIN_PAGE}>Go Main Page</ButtonRoute>
     </Grid>
   );
