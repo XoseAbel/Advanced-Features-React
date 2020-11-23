@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { NotFound } from '../Components/pages/NotFound';
-import MainPage from '../Components/pages/MainPage/MainPage';
+import { NotFound } from '../Components/Pages/NotFound';
+import MainPage from '../Components/Pages/MainPage/MainPage';
 import { CLOSURE_AVOID_MULTIPLE_CALLS, MAIN_PAGE } from './const';
-import ClosureMultipleCalls from '../Components/pages/ClosureAvoidMultipleCalls';
+import ClosureMultipleCalls from '../Components/Pages/ClosureAvoidMultipleCalls';
 
 const Routes = () => {
   return (

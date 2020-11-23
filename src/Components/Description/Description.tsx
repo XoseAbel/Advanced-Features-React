@@ -1,9 +1,8 @@
-import classes from '*.module.css';
 import { makeStyles } from '@material-ui/core';
-import React from 'react';
+import React, { ReactFragment } from 'react';
 
 interface propsInterface {
-  children: string;
+  children: string | ReactFragment;
 }
 
 const useStyles = makeStyles(() => ({
