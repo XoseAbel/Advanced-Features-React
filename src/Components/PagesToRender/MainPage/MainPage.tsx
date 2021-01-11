@@ -38,7 +38,7 @@ export default () => {
           reset component with key
         </ButtonRoute>
         <ButtonRoute nextRoute={CLOSURE_AVOID_MULTIPLE_CALLS}>
-          multiple calls to API
+          multiple calls to API - Closure
         </ButtonRoute>
       </Grid>
       <div className='tipografialibro' id='tipografialibro'>
@@ -117,16 +117,7 @@ export default () => {
           <p>
             <a href='https://codesandbox.io/s/closure-n5z7s'>Closure</a>
           </p>
-          <p>
-            <a href='https://codesandbox.io/s/lifting-state-1dufw'>
-              Botón Reset
-            </a>
-          </p>
-          <p>
-            <a href='https://codesandbox.io/s/lifting-state-solutions-izj57'>
-              Botón Reset (dos soluciones)
-            </a>
-          </p>
+
           <p>
             <a href='https://codesandbox.io/s/controlled-vs-uncontrolled-forms-cud9k'>
               Controlado vs no controlado (form)
